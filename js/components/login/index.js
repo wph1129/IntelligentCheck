@@ -19,21 +19,18 @@ const background = require("../../../images/shadow.png");
 
 const validate = values => {
   const error = {};
-  error.email = "";
+  error.phone = "";
   error.password = "";
-  var ema = values.email;
+  var pho = values.phone;
   var pw = values.password;
-  if (values.email === undefined) {
-    ema = "";
+  if (values.phone === undefined) {
+    pho = "";
   }
   if (values.password === undefined) {
     pw = "";
   }
-  if (ema.length < 8 && ema !== "") {
-    error.email = "too short";
-  }
-  if (!ema.includes("@") && ema !== "") {
-    error.email = "@ not included";
+  if (pho.length = 11 && pho !== "") {
+    error.phone = "too short,must be 11";
   }
   if (pw.length > 12) {
     error.password = "max 11 characters";
@@ -72,9 +69,9 @@ class Login extends Component {
     }
     return (
       <Item error={hasError}>
-        <Icon active name={input.name === "email" ? "person" : "unlock"} />
+        <Icon active name={input.name === "phone" ? "person" : "unlock"} />
         <Input
-          placeholder={input.name === "email" ? "EMAIL" : "PASSWORD"}
+          placeholder={input.name === "phone" ? "手机号" : "密码"}
           {...input}
         />
         {hasError
@@ -93,13 +90,13 @@ class Login extends Component {
           <Content>
             <Image source={background} style={styles.shadow}>
               <View style={styles.bg}>
-                <Field name="手机号" component={this.renderInput} />
-                <Field name="密码" component={this.renderInput} />
+                <Field name="phone" component={this.renderInput} />
+                <Field name="password" component={this.renderInput} />
                 <Button
                   style={styles.btn}
                   onPress={() => this.props.navigation.navigate("Home")}
                 >
-                  <Text>登录</Text>
+                  <Text style={styles.btnText}>登录</Text>
                 </Button>
               </View>
             </Image>

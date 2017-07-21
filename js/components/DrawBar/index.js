@@ -9,7 +9,8 @@ import {
   Content,
   Icon
 } from "native-base";
-const routes = ["Home", "BlankPage2"];
+const routes = [{route:"Home",title:"我的活动"}, {route:"MyToDo",title:"我的待办"}, {route:"MyDone",title:"我的已办"}
+,{route:"MyScores",title:"我的积分"},{route:"Setting",title:"设置"},{route:"About",title:"关于"}];
 export default class DrawBar extends React.Component {
   static navigationOptions = {
     header: null
@@ -19,9 +20,7 @@ export default class DrawBar extends React.Component {
       <Container>
         <Content>
           <Image
-            source={{
-              uri: "https://github.com/GeekyAnts/NativeBase-KitchenSink/raw/react-navigation/img/drawer-cover.png"
-            }}
+            source={require("../../../images/drawer-cover.png")}
             style={{
               height: 120,
               alignSelf: "stretch",
@@ -34,16 +33,16 @@ export default class DrawBar extends React.Component {
                 height: 120,
                 alignSelf: "stretch",
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
+                marginLeft:20
               }}
               onPress={() => this.props.navigation.navigate("DrawerClose")}
             >
               <Image
                 square
-                style={{ height: 80, width: 70 }}
-                source={{
-                  uri: "https://github.com/GeekyAnts/NativeBase-KitchenSink/raw/react-navigation/img/logo.png"
-                }}
+                style={{ height: 80, width: 70,
+                alignSelf: "stretch"}}
+                source={require("../../../images/logo.png")}
               />
             </TouchableOpacity>
           </Image>
@@ -53,9 +52,9 @@ export default class DrawBar extends React.Component {
               return (
                 <ListItem
                   button
-                  onPress={() => this.props.navigation.navigate(data)}
+                  onPress={() => this.props.navigation.navigate(data.route)}
                 >
-                  <Text>{data}</Text>
+                  <Text>{data.title}</Text>
                 </ListItem>
               );
             }}

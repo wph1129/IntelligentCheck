@@ -35,4 +35,8 @@ export default {
     marginTop: 20,
     alignSelf: 'center',
   },
+  btnText:{
+    textAlign: 'center',
+    width:200
+  }
 };

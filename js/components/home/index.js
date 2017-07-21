@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import BlankPage2 from "../blankPage2";
+import MyToDo from "../myToDo";
+import MyDone from '../myDone';
+import MyScores  from '../myScores';
+import Setting  from '../setting';
+import About  from '../about';
 import DrawBar from "../DrawBar";
 import { DrawerNavigator, NavigationActions } from "react-navigation";
 import {
@@ -44,7 +48,19 @@ class Home extends Component {
       <Container style={styles.container}>
         <Header>
           <Left>
+            <Button
+              transparent
+              onPress={() => DrawerNav.navigate("DrawerOpen")}
+            >
+              <Icon active name="menu" />
+            </Button>
+          </Left>
 
+          <Body>
+            <Title>Home</Title>
+          </Body>
+
+          <Right>
             <Button
               transparent
               onPress={() => {
@@ -58,19 +74,6 @@ class Home extends Component {
               }}
             >
               <Icon active name="power" />
-            </Button>
-          </Left>
-
-          <Body>
-            <Title>Home</Title>
-          </Body>
-
-          <Right>
-            <Button
-              transparent
-              onPress={() => DrawerNav.navigate("DrawerOpen")}
-            >
-              <Icon active name="menu" />
             </Button>
           </Right>
         </Header>
@@ -111,7 +114,11 @@ const HomeSwagger = connect(mapStateToProps, bindAction)(Home);
 const DrawNav = DrawerNavigator(
   {
     Home: { screen: HomeSwagger },
-    BlankPage2: { screen: BlankPage2 }
+    MyToDo: { screen: MyToDo },
+    MyDone:{ screen: MyDone },
+    MyScores:{ screen: MyScores },
+    Setting:{screen:Setting},
+    About:{screen:About}
   },
   {
     contentComponent: props => <DrawBar {...props} />
